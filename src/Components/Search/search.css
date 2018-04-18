@@ -1,0 +1,181 @@
+.search-background-container {
+    width: 100vw;
+    height: 1000px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-flow: column;
+    background-color: black;
+    margin: auto;
+}
+
+.search-background-image {
+    width: 80%;
+    height: 80%;
+    background-image: url('../../Assets/Images/concert.jpg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    animation: fade-in-1 2s 0s forwards;
+}
+
+.flash-top-header {
+    width: 100%;
+    height: 20%;
+    font-size: 60px;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fade-in-3 3s 0s forwards;
+    opacity: 0;
+}
+
+.flash-bottom-header {
+    width: 100%;
+    height: 20%;
+    font-size: 60px;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fade-in-2 3s 0.5s forwards;
+    opacity: 0;
+}
+
+.flash-title {
+    width: 100%;
+    height: 30%;
+    font-size: 100px;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fade-in-1 1s 2s forwards;
+    opacity: 0;
+}
+
+.artist-container {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.artist-circle-eminem {
+    width: 15%;
+    height: 80%;
+    border-radius: 50%;
+    background-image: url('../../Assets/Images/eminem.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid rgb(58, 58, 58);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.artist-title {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 36px;
+    opacity: 0;
+}
+
+.artist-circle-rihanna {
+    width: 15%;
+    height: 80%;
+    border-radius: 50%;
+    background-image: url('../../Assets/Images/rihanna.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid rgb(58, 58, 58);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.artist-circle-drake {
+    width: 15%;
+    height: 80%;
+    border-radius: 50%;
+    background-image: url('../../Assets/Images/drake.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid rgb(58, 58, 58);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.artist-circle-lady-gaga {
+    width: 15%;
+    height: 80%;
+    border-radius: 50%;
+    background-image: url('../../Assets/Images/lady-gaga.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid rgb(58, 58, 58);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.artist-circle-marilyn {
+    width: 15%;
+    height: 80%;
+    border-radius: 50%;
+    background-image: url('../../Assets/Images/marilyn.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid rgb(58, 58, 58);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@keyframes ball-fade-out {
+    0% {filter: brightness(1)}
+    100% {filter: brightness(0.40)}
+}
+
+@keyframes title-fade-in {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+
+@keyframes fade-in-1 {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+
+@keyframes fade-in-3 {
+    0% {opacity: 0; transform: translateX(0px);}
+    50% {opacity: 1; transform: translateX(-200px);}
+    100% {opacity: 0; transform: translateX(-200px); pointer-events: none; display: none;}
+}
+
+@keyframes fade-in-2 {
+    0% {opacity: 0; transform: translateX(0px);}
+    50% {opacity: 1; transform: translateX(200px);}
+    100% {opacity: 0; transform: translateX(200px); pointer-events: none; display: none;}
+}
