@@ -7,6 +7,6 @@ import Search from './Components/Search/search.js'
 export default (
   <Switch>
     <Route component={Home} path="/" exact/>
-    <Route component={Search} path="/search" exact/>
+    <Route component={Search} path="/search:access" exact/>
   </Switch>
 )
