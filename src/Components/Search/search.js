@@ -220,12 +220,12 @@ export default class Search extends Component {
     }
 
     artistClick(id) {
-        axios.get(`https://api.spotify.com/v1/artists/${id}`, { headers: { Authorization: `Bearer ${this.state.accessToken.access}` } })
+        axios.get(`https://api.spotify.com/v1/artists/${id}`, { headers: { Authorization: `Bearer ${this.state.accessToken}` } })
         .then(res => {
             this.setState({ followers: res.data.followers.total, genre: res.data.genres[0], popularity: res.data.popularity }, () => console.log(res))
         })
 
-    axios.get(`https://api.spotify.com/v1/artists/${id}/related-artists`, { headers: { Authorization: `Bearer ${this.state.accessToken.access}` } })
+    axios.get(`https://api.spotify.com/v1/artists/${id}/related-artists`, { headers: { Authorization: `Bearer ${this.state.accessToken}` } })
         .then(res => {
             console.log(11111, res)
             this.setState({
