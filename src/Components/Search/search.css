@@ -1,6 +1,6 @@
 .search-background-container {
     width: 100vw;
-    height: 1000px;
+    height: auto;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -11,7 +11,7 @@
 
 .search-background-image {
     width: 80%;
-    height: 80%;
+    height: 600px;
     background-image: url('../../Assets/Images/concert.jpg');
     background-position: center;
     background-size: contain;
@@ -66,8 +66,9 @@
     width: 100%;
     height: 300px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    margin: auto;
 }
 
 .artist-circle-eminem {
@@ -82,6 +83,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    order: 1;
+    transition: 0.25s;
+    z-index: 1;
+}
+
+.artist-circle-eminem:hover {
+    background-image: url('../../Assets/Images/eminem-dark.jpg');
+    transition: 0.25s;
 }
 
 .artist-title {
@@ -94,6 +104,11 @@
     font-family: 'PT Sans', sans-serif;
     font-size: 36px;
     opacity: 0;
+    cursor: pointer;
+}
+
+.artist-title:hover {
+    animation-play-state: running;
 }
 
 .artist-circle-rihanna {
@@ -108,6 +123,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    order: 2;
+    z-index: 1;
+}
+
+
+.artist-circle-rihanna:hover {
+    background-image: url('../../Assets/Images/rihanna-dark.jpg');
+    transition: 0.25s;
 }
 
 .artist-circle-drake {
@@ -122,6 +146,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    order: 3;
+}
+
+.artist-circle-drake:hover {
+    background-image: url('../../Assets/Images/drake-dark.jpg');
+    transition: 0.25s;
 }
 
 .artist-circle-lady-gaga {
@@ -136,6 +167,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    order: 4;
+    text-align: center;
+    z-index: 1;
+}
+
+.artist-circle-lady-gaga:hover {
+    background-image: url('../../Assets/Images/lady-gaga-dark.jpg');
+    transition: 0.25s;
 }
 
 .artist-circle-marilyn {
@@ -151,16 +191,186 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    cursor: pointer;
+    order: 5;
+    z-index: 1;
 }
+
+.artist-circle-marilyn:hover {
+    background-image: url('../../Assets/Images/marilyn-dark.jpg');
+    transition: 0.25s;
+}
+
+.green-row-container-1 {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+}
+
+.black-ball {
+    width: 15%;
+    height: 80%;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.grey-ball {
+    width: 15%;
+    height: 80%;
+    border-radius: 50%;
+    border: 1px solid grey;
+    transition: 0.5s;
+    background-size: cover;
+}
+
+.grey-ball-off {
+    width: 15%;
+    height: 80%;
+    border-radius: 50%;
+    border: 1px solid black;
+    transition: 0.5s;
+    background-size: cover;
+    opacity: 0;
+}
+
+.green-ball-off {
+    width: 15%;
+    height: 80%;
+    border-radius: 50%;
+    background-color: black;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'PT Sans', sans-serif;
+    flex-flow: column;
+}
+
+.green-ball {
+    width: 15%;
+    height: 80%;
+    border-radius: 50%;
+    background-color: #1ED760;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 26px;
+    flex-flow: column;
+}
+
+.go-back-ball {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    position: absolute;
+    border: 1px solid black;
+    color: black;
+    font-family: 'PT Sans', sans-serif;
+    background-color: black;
+    font-size: 26px;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.go-back-ball-on {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    position: absolute;
+    border: 1px solid grey;
+    color: grey;
+    font-family: 'PT Sans', sans-serif;
+    background-color: black;
+    font-size: 26px;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.go-back-ball-on:hover {
+    border: 1px solid white;
+    color: white;
+    transition: 0.5s;
+}
+
+.listen-ball {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    position: absolute;
+    background-color: black;
+    border: 1px solid black;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 26px;
+    color: black;
+    pointer-events: none;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.listen-ball-on {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    position: absolute;
+    background-color: black;
+    border: 1px solid #1ED760;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 26px;
+    color: #1ED760;
+    cursor: pointer;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.listen-ball-on:hover {
+    background-color: #1ED760;
+    color: black;
+    transition: 0.5s;
+}
+
+
 
 @keyframes ball-fade-out {
     0% {filter: brightness(1)}
     100% {filter: brightness(0.40)}
 }
 
+@keyframes ball-hide {
+    0% {opacity: 1;}
+    100% {opacity: 0; pointer-events: none;}
+}
+
+@keyframes ball-appear {
+    0% {opacity: 0; pointer-events: none;}
+    100% {opacity: 1; pointer-events: auto;}
+}
+
 @keyframes title-fade-in {
     0% {opacity: 0}
     100% {opacity: 1}
+}
+
+@keyframes title-fade-out {
+    0% {opacity: 1}
+    100% {opacity: 0}
 }
 
 @keyframes fade-in-1 {
@@ -178,4 +388,9 @@
     0% {opacity: 0; transform: translateX(0px);}
     50% {opacity: 1; transform: translateX(200px);}
     100% {opacity: 0; transform: translateX(200px); pointer-events: none; display: none;}
+}
+
+@keyframes eminem-chosen {
+    0% {}
+    100% {transform: translateX(628.53125px)}
 }
