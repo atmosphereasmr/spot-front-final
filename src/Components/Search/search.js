@@ -6,7 +6,7 @@ export default class Search extends Component {
 
     componentDidMount() {
 
-        this.setState({accessToken: this.props.match.params.access}, () => console.log(this.state))
+        // this.setState({accessToken: this.props.match.params.access}, () => console.log(this.state))
 
 
 
@@ -34,7 +34,7 @@ export default class Search extends Component {
         this.state = {
             chosen: "",
             chosenRight: "",
-            accessToken: ""
+            accessToken: "BQAwYtMCCze2VyRYk0LuMcpXIN0VirO-nT7YFQyaJA6Ak90ltQB-bcnUEsi0SJfzpS-R5ImdD7iMEgh4nZ7qZ2CKc0unnXLDRHNCQCNRA1KxkDsaBaA_-Dr3Wpvo4UWKz_pr6oo3tqcOFfduSFW_79vX79X1cQ"
         }
     }
 
