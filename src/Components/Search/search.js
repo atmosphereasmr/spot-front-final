@@ -6,7 +6,7 @@ export default class Search extends Component {
 
     componentDidMount() {
 
-        this.setState({accessToken: this.props.match.params}, () => console.log(this.state))
+        this.setState({accessToken: this.props.match.params.access.split('=')[1]}, () => console.log(this.state))
 
 
 
