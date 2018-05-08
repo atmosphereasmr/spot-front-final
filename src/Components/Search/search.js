@@ -8,8 +8,6 @@ export default class Search extends Component {
 
         this.setState({accessToken: this.props.match.params.access.split('=')[1]}, () => console.log(this.state))
 
-
-
         const rihanna = document.getElementById('rihanna-ball')
         const rihannaTop = rihanna.offsetTop
         const rihannaLeft = rihanna.offsetLeft
@@ -109,7 +107,7 @@ export default class Search extends Component {
             const listenBall = document.getElementById('listen-ball')
             listenBall.className = "listen-ball-on"
 
-            this.artistClick('5pKCCKE2ajJHZ9KAiaK11H')
+            this.artistClick('5pKCCKE2ajJHZ9KAiaK11H', 'rihanna')
         }
         if (artist === "drake") {
 
@@ -231,7 +229,10 @@ export default class Search extends Component {
             this.setState({
                 ball4Background: res.data.artists[0].images[0].url,
                 ball5Background: res.data.artists[1].images[0].url,
-                ball6Background: res.data.artists[2].images[0].url
+                ball6Background: res.data.artists[2].images[0].url,
+                ball4name: res.data.artists[0].name,
+                ball5name: res.data.artists[1].name,
+                ball6name: res.data.artists[2].name
             
             }, () => {
                 const ball4 = document.getElementById('grey-ball-1')
@@ -240,9 +241,21 @@ export default class Search extends Component {
                 ball4.style = `background-image: url('${this.state.ball4Background}')`
                 ball5.style = `background-image: url('${this.state.ball5Background}')`
                 ball6.style = `background-image: url('${this.state.ball6Background}')`
-                console.log(this.state)
+                console.log(444444, this.state)
             })
         })
+
+        const ball1 = document.getElementById('grey-ball-1')
+
+        const ball1Top = ball1.offsetTop
+        const ball1Left = ball1.offsetLeft
+        const ball1Width = ball1.offsetWidth
+        const ball1Height = ball1.offsetHeight
+
+        console.log(3333, ball1Top, ball1Left, ball1Width, ball1Height)
+
+        const relateBall = document.getElementById('related-ball')
+        relateBall.style = `top: ${ball1Top}px; left: ${ball1Left}px; width: ${ball1Width}px; height: ${ball1Height}px; opacity: 0;`
     }
 
 
@@ -423,6 +436,298 @@ export default class Search extends Component {
         }
     }
 
+    relatedMouseOver(id) {
+        console.log('okay')
+        const ball = document.getElementById(id)
+        if (id === 'grey-ball-1') {
+            ball.style = `filter: grayscale(0); background-image: url(${this.state.ball4Background});`
+        } else if (id === 'grey-ball-2') {
+            ball.style = `filter: grayscale(0); background-image: url(${this.state.ball5Background});`
+        } else if (id === 'grey-ball-3') {
+            ball.style = `filter: grayscale(0); background-image: url(${this.state.ball6Background});`
+        }
+    }
+
+    relatedMouseOff(id) {
+        console.log('okay')
+        const ball = document.getElementById(id)
+        if (id === 'grey-ball-1') {
+            ball.style = `filter: grayscale(1); background-image: url(${this.state.ball4Background});`
+        } else if (id === 'grey-ball-2') {
+            ball.style = `filter: grayscale(1); background-image: url(${this.state.ball5Background});`
+        } else if (id === 'grey-ball-3') {
+            ball.style = `filter: grayscale(1); background-image: url(${this.state.ball6Background});`
+        }
+    }
+
+    setRelateBall1() {
+
+        axios.get(`https://api.spotify.com/v1/search?q=${this.state.ball4name}&type=artist`, {headers: {Authorization: `Bearer ${this.state.accessToken}`}})
+        .then(res => {
+            console.log(res)
+            this.setState({
+                followers: res.data.artists.items[0].followers.total,
+                genre: res.data.artists.items[0].genres[0],
+                popularity: res.data.artists.items[0].popularity,
+                relatedBackground: res.data.artists.items[0].images[0],
+                relatedName: res.data.artists.items[0].name,
+                relatedId: res.data.artists.items[0].id
+            }, () => {
+                axios.get(`https://api.spotify.com/v1/artists/${this.state.relatedId}/related-artists`, {headers: {Authorization: `Bearer ${this.state.accessToken}`}})
+                .then(res => {
+                    console.log(44444, res)
+                    this.setState({
+                        ball4Background: res.data.artists[0].images[0].url,
+                        ball4name: res.data.artists[0].name,
+                        ball5Background: res.data.artists[1].images[0].url,
+                        ball5name: res.data.artists[1].name,
+                        ball6Background: res.data.artists[2].images[0].url,
+                        ball6name: res.data.artists[2].name
+                    }, () => {
+
+                        console.log('here is the state', this.state)
+                        
+                        const ball4 = document.getElementById('grey-ball-1')
+                        const ball5 = document.getElementById('grey-ball-2')
+                        const ball6 = document.getElementById('grey-ball-3')
+
+                        ball4.style = `background-image: url(${this.state.ball4Background})`
+                        ball5.style = `background-image: url(${this.state.ball5Background})`
+                        ball6.style = `background-image: url(${this.state.ball6Background})`
+                    })
+                })
+            })
+        })
+
+        if (this.state.chosen === 'rihanna') {
+            const rihanna = document.getElementById('rihanna-ball')
+            rihanna.style = `animation: ball-hide 0s forwards;` 
+        } else if (this.state.chosen === 'drake') {
+            const drake = document.getElementById('drake-ball')
+            drake.style = `animation: ball-hide 0s forwards;` 
+        } else if (this.state.chosen === 'eminem') {
+            const eminem = document.getElementById('eminem-ball')
+            eminem.style = `animation: ball-hide 0s forwards;` 
+        } else if (this.state.chosen === 'lady-gaga') {
+            const gaga = document.getElementById('lady-gaga-ball')
+            gaga.style = `animation: ball-hide 0s forwards;` 
+        } else if (this.state.chosen === 'manson') {
+            const manson = document.getElementById('manson-ball')
+            manson.style = `animation: ball-hide 0s forwards;` 
+        }
+
+        const ball1 = document.getElementById('grey-ball-1')
+
+        const ball1Top = ball1.offsetTop
+        const ball1Left = ball1.offsetLeft
+        const ball1Width = ball1.offsetWidth
+        const ball1Height = ball1.offsetHeight
+
+        console.log(33333, this.state)
+
+        const relateBall = document.getElementById('related-ball')
+        relateBall.style = `top: ${ball1Top}px; left: ${ball1Left}px; width: ${ball1Width}px; background-image: url(${this.state.ball4Background}); height: ${ball1Height}px; opacity: 0;`
+    
+    }
+
+    setRelateBall2() {
+
+        axios.get(`https://api.spotify.com/v1/search?q=${this.state.ball5name}&type=artist`, {headers: {Authorization: `Bearer ${this.state.accessToken}`}})
+        .then(res => {
+            console.log(res)
+            this.setState({
+                followers: res.data.artists.items[0].followers.total,
+                genre: res.data.artists.items[0].genres[0],
+                popularity: res.data.artists.items[0].popularity,
+                relatedBackground: res.data.artists.items[0].images[0],
+                relatedName: res.data.artists.items[0].name,
+                relatedId: res.data.artists.items[0].id
+            }, () => {
+                axios.get(`https://api.spotify.com/v1/artists/${this.state.relatedId}/related-artists`, {headers: {Authorization: `Bearer ${this.state.accessToken}`}})
+                .then(res => {
+                    console.log(44444, res)
+                    this.setState({
+                        ball4Background: res.data.artists[0].images[0].url,
+                        ball4name: res.data.artists[0].name,
+                        ball5Background: res.data.artists[1].images[0].url,
+                        ball5name: res.data.artists[1].name,
+                        ball6Background: res.data.artists[2].images[0].url,
+                        ball6name: res.data.artists[2].name
+                    }, () => {
+
+                        console.log('here is the state', this.state)
+                        
+                        const ball4 = document.getElementById('grey-ball-1')
+                        const ball5 = document.getElementById('grey-ball-2')
+                        const ball6 = document.getElementById('grey-ball-3')
+
+                        ball4.style = `background-image: url(${this.state.ball4Background})`
+                        ball5.style = `background-image: url(${this.state.ball5Background})`
+                        ball6.style = `background-image: url(${this.state.ball6Background})`
+                    })
+                })
+            })
+        })
+
+        if (this.state.chosen === 'rihanna') {
+            const rihanna = document.getElementById('rihanna-ball')
+            rihanna.style = `animation: ball-hide 0s forwards;` 
+        } else if (this.state.chosen === 'drake') {
+            const drake = document.getElementById('drake-ball')
+            drake.style = `animation: ball-hide 0s forwards;` 
+        } else if (this.state.chosen === 'eminem') {
+            const eminem = document.getElementById('eminem-ball')
+            eminem.style = `animation: ball-hide 0s forwards;` 
+        } else if (this.state.chosen === 'lady-gaga') {
+            const gaga = document.getElementById('lady-gaga-ball')
+            gaga.style = `animation: ball-hide 0s forwards;` 
+        } else if (this.state.chosen === 'manson') {
+            const manson = document.getElementById('manson-ball')
+            manson.style = `animation: ball-hide 0s forwards;` 
+        }
+
+        const ball1 = document.getElementById('grey-ball-2')
+
+        const ball1Top = ball1.offsetTop
+        const ball1Left = ball1.offsetLeft
+        const ball1Width = ball1.offsetWidth
+        const ball1Height = ball1.offsetHeight
+
+        console.log(33333, this.state)
+
+        const relateBall = document.getElementById('related-ball')
+        relateBall.style = `top: ${ball1Top}px; left: ${ball1Left}px; width: ${ball1Width}px; background-image: url(${this.state.ball4Background}); height: ${ball1Height}px; opacity: 0;`
+    
+    }
+
+    setRelateBall3() {
+
+        axios.get(`https://api.spotify.com/v1/search?q=${this.state.ball6name}&type=artist`, {headers: {Authorization: `Bearer ${this.state.accessToken}`}})
+        .then(res => {
+            console.log(res)
+            this.setState({
+                followers: res.data.artists.items[0].followers.total,
+                genre: res.data.artists.items[0].genres[0],
+                popularity: res.data.artists.items[0].popularity,
+                relatedBackground: res.data.artists.items[0].images[0],
+                relatedName: res.data.artists.items[0].name,
+                relatedId: res.data.artists.items[0].id
+            }, () => {
+                axios.get(`https://api.spotify.com/v1/artists/${this.state.relatedId}/related-artists`, {headers: {Authorization: `Bearer ${this.state.accessToken}`}})
+                .then(res => {
+                    console.log(44444, res)
+                    this.setState({
+                        ball4Background: res.data.artists[0].images[0].url,
+                        ball4name: res.data.artists[0].name,
+                        ball5Background: res.data.artists[1].images[0].url,
+                        ball5name: res.data.artists[1].name,
+                        ball6Background: res.data.artists[2].images[0].url,
+                        ball6name: res.data.artists[2].name
+                    }, () => {
+
+                        console.log('here is the state', this.state)
+                        
+                        const ball4 = document.getElementById('grey-ball-1')
+                        const ball5 = document.getElementById('grey-ball-2')
+                        const ball6 = document.getElementById('grey-ball-3')
+
+                        ball4.style = `background-image: url(${this.state.ball4Background})`
+                        ball5.style = `background-image: url(${this.state.ball5Background})`
+                        ball6.style = `background-image: url(${this.state.ball6Background})`
+                    })
+                })
+            })
+        })
+
+        if (this.state.chosen === 'rihanna') {
+            const rihanna = document.getElementById('rihanna-ball')
+            rihanna.style = `animation: ball-hide 0s forwards;` 
+        } else if (this.state.chosen === 'drake') {
+            const drake = document.getElementById('drake-ball')
+            drake.style = `animation: ball-hide 0s forwards;` 
+        } else if (this.state.chosen === 'eminem') {
+            const eminem = document.getElementById('eminem-ball')
+            eminem.style = `animation: ball-hide 0s forwards;` 
+        } else if (this.state.chosen === 'lady-gaga') {
+            const gaga = document.getElementById('lady-gaga-ball')
+            gaga.style = `animation: ball-hide 0s forwards;` 
+        } else if (this.state.chosen === 'manson') {
+            const manson = document.getElementById('manson-ball')
+            manson.style = `animation: ball-hide 0s forwards;` 
+        }
+
+        const ball1 = document.getElementById('grey-ball-3')
+
+        const ball1Top = ball1.offsetTop
+        const ball1Left = ball1.offsetLeft
+        const ball1Width = ball1.offsetWidth
+        const ball1Height = ball1.offsetHeight
+
+        console.log(33333, this.state)
+
+        const relateBall = document.getElementById('related-ball')
+        relateBall.style = `top: ${ball1Top}px; left: ${ball1Left}px; width: ${ball1Width}px; background-image: url(${this.state.ball6Background}); height: ${ball1Height}px; opacity: 0;`
+    
+    }
+
+    relatedClick(id) {
+
+
+        if (id === 'grey-ball-1') {
+
+        this.setRelateBall1()
+
+        const ball1 = document.getElementById('drake-ball')
+
+        const ball1Top = ball1.offsetTop
+        const ball1Left = ball1.offsetLeft
+        const ball1Width = ball1.offsetWidth
+        const ball1Height = ball1.offsetHeight
+
+        console.log(3333, ball1Top, ball1Left, ball1Width, ball1Height)
+
+        const relateBall = document.getElementById('related-ball')
+        relateBall.className = "related-ball"
+        relateBall.style = `top: ${ball1Top}px; left: ${ball1Left}px; width: ${ball1Width}px; height: ${ball1Height}px; background-image: url(${this.state.ball4Background}); background-size: cover; opacity: 1; transition: 1s;`
+    }
+
+    if (id === 'grey-ball-2') {
+
+        this.setRelateBall2()
+
+        const ball1 = document.getElementById('drake-ball')
+
+        const ball1Top = ball1.offsetTop
+        const ball1Left = ball1.offsetLeft
+        const ball1Width = ball1.offsetWidth
+        const ball1Height = ball1.offsetHeight
+
+        console.log(3333, ball1Top, ball1Left, ball1Width, ball1Height)
+
+        const relateBall = document.getElementById('related-ball')
+        relateBall.className = "related-ball"
+        relateBall.style = `top: ${ball1Top}px; left: ${ball1Left}px; width: ${ball1Width}px; height: ${ball1Height}px; background-image: url(${this.state.ball5Background}); background-size: cover; opacity: 1; transition: 1s;`
+    }
+
+    if (id === 'grey-ball-3') {
+
+        this.setRelateBall3()
+
+        const ball1 = document.getElementById('drake-ball')
+
+        const ball1Top = ball1.offsetTop
+        const ball1Left = ball1.offsetLeft
+        const ball1Width = ball1.offsetWidth
+        const ball1Height = ball1.offsetHeight
+
+        console.log(3333, ball1Top, ball1Left, ball1Width, ball1Height)
+
+        const relateBall = document.getElementById('related-ball')
+        relateBall.className = "related-ball"
+        relateBall.style = `top: ${ball1Top}px; left: ${ball1Left}px; width: ${ball1Width}px; height: ${ball1Height}px; background-image: url(${this.state.ball6Background}); background-size: cover; opacity: 1; transition: 1s;`
+    }
+}
+
     render() {
         return (
             <div className="search-background-container">
@@ -482,16 +787,33 @@ export default class Search extends Component {
                 </div>
                 <div className="green-row-container-1">
                     <div className="black-ball"></div>
-                    <div className="grey-ball-off" id="grey-ball-1"></div>
-                    <div className="grey-ball-off" id="grey-ball-2"></div>
-                    <div className="grey-ball-off" id="grey-ball-3"></div>
+                    <div className="grey-ball-off" id="grey-ball-1" onMouseOver={() => this.relatedMouseOver('grey-ball-1')} onMouseLeave={() => this.relatedMouseOff('grey-ball-1')} onClick={() => this.relatedClick('grey-ball-1')}>
+                    <div className="related-artist-title">
+                            {this.state.ball4name}
+                        </div>
+                    </div>
+                    <div className="grey-ball-off" id="grey-ball-2" onMouseOver={() => this.relatedMouseOver('grey-ball-2')} onMouseLeave={() => this.relatedMouseOff('grey-ball-2')} onClick={() => this.relatedClick('grey-ball-2')}>
+                    <div className="related-artist-title">
+                            {this.state.ball5name}
+                        </div>
+                    </div>
+                    <div className="grey-ball-off" id="grey-ball-3" onMouseOver={() => this.relatedMouseOver('grey-ball-3')} onMouseLeave={() => this.relatedMouseOff('grey-ball-3')} onClick={() => this.relatedClick('grey-ball-3')}>
+                    <div className="related-artist-title">
+                            {this.state.ball6name}
+                        </div>
+                    </div>
                     <div className="black-ball"></div>
                 </div>
                 <div className="go-back-ball" id="go-back-ball" onClick={() => this.goBack()}>
                     Go Back
                 </div>
                 <div className="listen-ball" id="listen-ball">
-                    Listen on Spotify
+                Listen on Spotify
+                </div>
+                <div className="related-ball" id="related-ball">
+                <div className="related-artist-title" id="related-title">
+                            {this.state.relatedName}
+                        </div>
                 </div>
             </div>
         )

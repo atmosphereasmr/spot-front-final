@@ -105,6 +105,21 @@
     font-size: 36px;
     opacity: 0;
     cursor: pointer;
+    text-align: center;
+}
+
+.related-artist-title {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 36px;
+    opacity: 1;
+    cursor: pointer;
+    text-align: center;
 }
 
 .artist-title:hover {
@@ -224,6 +239,7 @@
     border: 1px solid grey;
     transition: 0.5s;
     background-size: cover;
+    filter: grayscale(1);
 }
 
 .grey-ball-off {
@@ -247,6 +263,7 @@
     align-items: center;
     font-family: 'PT Sans', sans-serif;
     flex-flow: column;
+    text-align: center;
 }
 
 .green-ball {
@@ -261,6 +278,7 @@
     font-family: 'PT Sans', sans-serif;
     font-size: 26px;
     flex-flow: column;
+    text-align: center;
 }
 
 .go-back-ball {
@@ -320,6 +338,27 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    text-align: center;
+}
+
+.related-ball {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    position: absolute;
+    border: 1px solid black;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 26px;
+    color: black;
+    pointer-events: none;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    opacity: 0;
+    background-image: url('')
 }
 
 .listen-ball-on {
@@ -338,6 +377,7 @@
     justify-content: center;
     align-items: center;
     transition: 0.5s;
+    text-align: center;
 }
 
 .listen-ball-on:hover {
@@ -346,8 +386,6 @@
     transition: 0.5s;
 }
 
-
-
 @keyframes ball-fade-out {
     0% {filter: brightness(1)}
     100% {filter: brightness(0.40)}
@@ -355,7 +393,7 @@
 
 @keyframes ball-hide {
     0% {opacity: 1;}
-    100% {opacity: 0; pointer-events: none;}
+    100% {opacity: 0; pointer-events: none; top: auto; left: auto;}
 }
 
 @keyframes ball-appear {
