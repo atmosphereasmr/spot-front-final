@@ -386,6 +386,62 @@
     transition: 0.5s;
 }
 
+.search-bar-container {
+    width: 20%;
+    height: 50px;
+    position: fixed;
+    margin: auto;
+    background-color: #3E3E3E;
+    z-index: 1;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glass-icon {
+    width: 40px;
+    height: 40px;
+    background-image: url('https://vignette.wikia.nocookie.net/deusex/images/9/9b/Magnifying_glass_icon.png/revision/latest?cb=20141205155051&path-prefix=en');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.glass-icon:hover {
+    filter: brightness(1);
+    transition: 0.5s;
+}
+
+.search-bar-container > input {
+    background-color: #3E3E3E;
+    border: 0px solid transparent;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+@keyframes scroll-down {
+    0% {top: -60px;}
+    100% {top: 0px;}
+}
+
+@keyframes scroll-up {
+    0% {top: 0px;}
+    100% {top: -60px;}
+}
+
 @keyframes ball-fade-out {
     0% {filter: brightness(1)}
     100% {filter: brightness(0.40)}

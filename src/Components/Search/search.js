@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './search.css'
 import axios from 'axios'
+import ScrollListener from 'react-scroll-listen'
 
 export default class Search extends Component {
 
@@ -25,6 +26,19 @@ export default class Search extends Component {
 
         const listenBall = document.getElementById('listen-ball')
         listenBall.style = `top: ${gagaTop}px; left: ${gagaLeft}px; width: ${gagaWidth}px; height: ${gagaHeight}px;`
+
+        this.scroller(this.state.scrollPosition)
+    }
+
+    scroller() {
+        const searchBox = document.getElementById('search-box')
+        window.onscroll = () => {
+            if (this.state.scrollPosition > 5) {
+                searchBox.style = "animation: scroll-down 0.5s forwards;"
+            } else if (this.state.scrollPosition < 5) {
+                searchBox.style = "animation: scroll-up 0.5s forwards;"
+            }
+        }
     }
 
     constructor(props) {
@@ -32,7 +46,8 @@ export default class Search extends Component {
         this.state = {
             chosen: "",
             chosenRight: "",
-            accessToken: ""
+            accessToken: "",
+            scrollPosition: 0
         }
     }
 
@@ -731,6 +746,13 @@ export default class Search extends Component {
     render() {
         return (
             <div className="search-background-container">
+                <ScrollListener
+      onScroll={value => this.setState({scrollPosition: value})}
+    />
+            <div className="search-bar-container" id="search-box">
+                <input placeholder="Enter an artist..."></input>
+                <div className="glass-icon"></div>
+            </div>
                 <div className="search-background-image">
                     <div className="flash-top-header">
                         Your music
