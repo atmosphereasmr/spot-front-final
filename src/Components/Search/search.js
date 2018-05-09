@@ -49,9 +49,9 @@ export default class Search extends Component {
     scroller() {
         const searchBox = document.getElementById('search-box')
         window.onscroll = () => {
-            if (this.state.scrollPosition > 5) {
+            if (this.state.scrollPosition > 0) {
                 searchBox.style = "animation: scroll-down 0.5s forwards;"
-            } else if (this.state.scrollPosition < 5) {
+            } else if (this.state.scrollPosition < 1) {
                 searchBox.style = "animation: scroll-up 0.5s forwards;"
             }
         }
